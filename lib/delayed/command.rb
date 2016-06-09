@@ -64,8 +64,11 @@ module Delayed
         opts.on('--exit-on-complete', "Exit when no more jobs are available to run. This will exit if all jobs are scheduled to run in the future.") do
           @options[:exit_on_complete] = true
         end
+        opts.on('--daemon-options a, b, c', Array, 'options to be passed through to daemons gem') do |daemon_options|
+          @daemon_options = daemon_options
+        end
       end
-      @args = opts.parse!(args)
+      @args = opts.parse!(args) + (@daemon_options || [])
     end
 
     def daemonize
