@@ -97,7 +97,7 @@ module Delayed
       opts = { :dir => dir,
                :dir_mode => :normal,
                :monitor => @monitor,
-               :force_kill_waittime => @options.delete(:force_kill_waittime),
+               :force_kill_waittime => @options[:force_kill_waittime],
                :ARGV => @args }
 
       Daemons.run_proc(process_name, opts) do |*args|
